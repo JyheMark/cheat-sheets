@@ -94,6 +94,11 @@ List remote branches with latest commit author and date, sort by date
 git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' --sort=committerdate
 ```
 
+Search remote refs for branches matching pattern
+```Bash
+git for-each-ref 'refs/remotes/**/*something*' --ignore-case
+```
+
 ## Log
 
 Show log for current branch
