@@ -192,6 +192,33 @@ Show changes on current HEAD
 git show
 ```
 
+## Stash
+
+Stash current changes on tracked files
+```Bash
+git stash
+```
+
+Show list of stashed changes
+```Bash
+git stash list
+```
+
+Stash current changes with message
+```Bash
+git stash -m "message"
+```
+
+Apply the most recently stashed changes, and remove from stash
+```Bash
+git stash pop
+```
+
+Apply the most recently stashed changes, but maintain the stash
+```Bash
+git stash apply
+```
+
 ## Status
 
 Show current status of tracked and untracked files
