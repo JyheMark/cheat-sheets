@@ -36,6 +36,12 @@ Create the certificate
 openssl x509 -req -sha256 -days 365 -in cert.csr -CA ca.pem -CAkey ca-key.pem -out cert.pem -extfile extfile.cnd -CAcreateserial
 ```
 
+Merge the root authority and intermediate certificates
+
+```bash
+ca.pem >> cert.pem
+```
+
 ## Certificate Formats
 
 X.509 Certificates
