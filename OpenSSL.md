@@ -196,7 +196,7 @@ To revoke an SSL certificate using the CRL, you can use the following command:
 
 ```Bash
 openssl ca -revoke [certificate file] -keyfile [private key file] -cert [certificate file] -crl_reason [reason]
-</code
+```
 
 For example, if you want to revoke the `server.pem` certificate using the root CA's private key and certificate, you can use the following command:
 
