@@ -30,13 +30,18 @@
    - [Get the version of Docker installed](#get-the-version-of-docker-installed)
    - [Get help with a Docker command](#get-help-with-a-docker-command)
 
-
 ## Basic Commands
 
 #### Run a Docker container:
 
 ```Bash
 docker run [image]
+```
+
+#### Run a Docker container, set the name, an environment variable, expose port outside:inside
+
+```Bash
+docker run pimage] --name [some-name] -e ENVIRONMENT_VARIABLE=VALUE -p 123:456
 ```
 
 #### List all running Docker containers:
