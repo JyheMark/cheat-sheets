@@ -1,179 +1,86 @@
 # Docker Cheat Sheet
 
-# Docker Cheat Sheet
+1. [Resource Management](#resource-management)
+   - [Get Resources](#get-resources)
+   - [Delete Resources](#delete-resources)
+2. [Containers](#containers)
+   - [Starting a container](#start-a-stopped-container)
+   - [Stopping a container](#stop-a-running-container)
+3. [Images](#images)
+   - [Create a container](#create-and-start-a-container-based-on-image)
+   - [Build image from dockerfile](#build-image-from-dockerfile)
+   - [Push image to repo](#push-image-to-external-repo)
+   - [Pull image from repo](#pull-image-from-external-repo)
 
-1. [Basic Commands](#basic-commands)
-   - [Run a Docker container](#run-a-docker-container)
-   - [List all running Docker containers](#list-all-running-docker-containers)
-   - [List all Docker containers (including stopped containers)](#list-all-docker-containers-including-stopped-containers)
-   - [Stop a running Docker container](#stop-a-running-docker-container)
-   - [Remove a Docker container](#remove-a-docker-container)
-   - [Remove all stopped Docker containers](#remove-all-stopped-docker-containers)
-   - [Run a Docker container in the background](#run-a-docker-container-in-the-background)
-2. [Image Commands](#image-commands)
-   - [List all Docker images](#list-all-docker-images)
-   - [Pull an image from a Docker registry](#pull-an-image-from-a-docker-registry)
-   - [Remove a Docker image](#remove-a-docker-image)
-   - [Remove all unused Docker images](#remove-all-unused-docker-images)
-3. [Networking Commands](#networking-commands)
-   - [List all Docker networks](#list-all-docker-networks)
-   - [Create a new Docker network](#create-a-new-docker-network)
-   - [Connect a Docker container to a network](#connect-a-docker-container-to-a-network)
-   - [Disconnect a Docker container from a network](#disconnect-a-docker-container-from-a-network)
-   - [Remove a Docker network](#remove-a-docker-network)
-4. [Volume Commands](#volume-commands)
-   - [List all Docker volumes](#list-all-docker-volumes)
-   - [Create a new Docker volume](#create-a-new-docker-volume)
-   - [Remove a Docker volume](#remove-a-docker-volume)
-   - [Remove all unused Docker volumes](#remove-all-unused-docker-volumes)
-5. [Other Commands](#other-commands)
-   - [Get the version of Docker installed](#get-the-version-of-docker-installed)
-   - [Get help with a Docker command](#get-help-with-a-docker-command)
+## Resource Management
 
-## Basic Commands
+#### Get resources
 
-#### Run a Docker container:
+Resource types:
+- image
+- container
 
 ```Bash
-docker run [image]
+docker <resource-type> ls
 ```
 
-#### Run a Docker container, set the name, an environment variable, expose port outside:inside
-
 ```Bash
-docker run pimage] --name [some-name] -e ENVIRONMENT_VARIABLE=VALUE -p 123:456
+docker <resource-type> ls -a
 ```
 
-#### List all running Docker containers:
+#### Delete resources
 
 ```Bash
-docker ps
+docker <resource-type> rm <resource-id>
 ```
 
-#### List all Docker containers (including stopped containers):
+## Containers
+
+#### Start a stopped container
 
 ```Bash
-docker ps -a
+docker start <container-id>
 ```
 
-#### Stop a running Docker container:
 
 ```Bash
-docker stop [container_name]
+docker start <container-id> -d
 ```
 
-#### Remove a Docker container:
+#### Stop a running container
 
 ```Bash
-docker rm [container_name]
+docker stop <container-id>
 ```
 
-#### Remove all stopped Docker containers:
+## Images
+
+#### Create and start a container based on image
 
 ```Bash
-docker container prune
+docker run <image-name>:<tag>
 ```
 
-#### Run a Docker container in the background:
+Start with host port 123 forwarded to container port 456, with env variable
 
 ```Bash
-docker run -d [image]
+docker run -d -p 123:456 -e SOME_VARIABLE=SOME_VALUE
 ```
 
-## Image Commands
-
-#### List all Docker images:
+#### Build image from dockerfile
 
 ```Bash
-docker images
+docker build -t <image-name>:<tag> .
 ```
 
-#### Pull an image from a Docker registry:
+#### Push image to external repo
 
 ```Bash
-docker pull [image]
+docker push <image-name>:<image-tag>
 ```
 
-#### Remove a Docker image:
+#### Pull image from external repo
 
 ```Bash
-docker rmi [image]
-```
-
-#### Remove all unused Docker images:
-
-```Bash
-docker image prune
-```
-
-## Networking Commands
-
-#### List all Docker networks:
-
-```Bash
-docker network ls
-```
-
-#### Create a new Docker network:
-
-```Bash
-docker network create [network_name]
-```
-
-#### Connect a Docker container to a network:
-
-```Bash
-docker network connect [network_name] [container_name]
-```
-
-#### Disconnect a Docker container from a network:
-
-```Bash
-docker network disconnect [network_name] [container_name]
-```
-
-#### Remove a Docker network:
-
-```Bash
-docker network rm [network_name]
-```
-
-## Volume Commands
-
-#### List all Docker volumes:
-
-```Bash
-docker volume ls
-```
-
-#### Create a new Docker volume:
-
-```Bash
-docker volume create [volume_name]
-```
-
-#### Remove a Docker volume:
-
-```Bash
-docker volume rm [volume_name]
-```
-
-#### Remove all unused Docker volumes:
-
-```Bash
-docker volume prune
-```
-
-## Other Commands
-
-#### Get the version of Docker installed:
-
-```Bash
-docker -v
-```
-
-#### Get help with a Docker command:
-
-```Bash
-docker [command] --help
+docker pull <image-name>:<image-tag>
 ```
